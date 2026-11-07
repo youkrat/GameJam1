@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://fy8j1uy7oj24"]
+
+[ext_resource type="Texture2D" uid="uid://bno7mh8udd21i" path="res://assets/world/energy_cell.png" id="1_8wyxw"]
+[ext_resource type="Script" uid="uid://dbkklskel56di" path="res://scripts/energy_cell.gd" id="1_qqd0n"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ge176"]
+radius = 3.0
+height = 12.0
+
+[node name="EnergyCell" type="Area2D" unique_id=1187851580]
+collision_mask = 2
+script = ExtResource("1_qqd0n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1326973689]
+texture_filter = 1
+texture = ExtResource("1_8wyxw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2094395259]
+shape = SubResource("CapsuleShape2D_ge176")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
