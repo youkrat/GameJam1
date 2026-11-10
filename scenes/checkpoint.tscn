@@ -78,19 +78,18 @@ animations = [{
 size = Vector2(23, 78)
 
 [node name="Checkpoint" type="Area2D" unique_id=737843235]
-collision_layer = 0
+collision_layer = 3
 collision_mask = 2
 script = ExtResource("2_ywqth")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1905175487]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ge176")
-frame_progress = 0.7524746
+frame_progress = 0.78876424
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1219680623]
 position = Vector2(-4.5, -3)
 shape = SubResource("RectangleShape2D_mgyta")
 
-[connection signal="area_entered" from="." to="AnimatedSprite2D" method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="." to="AnimatedSprite2D" method="_on_checkpoint_body_entered"]

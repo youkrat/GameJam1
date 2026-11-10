@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dux0f8i52h3dt"]
+
+[ext_resource type="Texture2D" uid="uid://dqkamnejckjap" path="res://assets/assets2/Merchant Ship/Sprites/Barrel/Idle/1.png" id="1_q36op"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ge176"]
+
+[node name="Barrel" type="Node2D" unique_id=416246812]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=136195143]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1899493726]
+shape = SubResource("CapsuleShape2D_ge176")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1094596470]
+position = Vector2(1.5, 0.5)
+scale = Vector2(1.1153846, 1.0333333)
+texture = ExtResource("1_q36op")

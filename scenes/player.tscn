@@ -2,8 +2,21 @@
 
 [ext_resource type="Texture2D" uid="uid://cteqhq1swva5l" path="res://assets/player/brackeys_knight.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://ddrxgalnoo5rx" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://5dkfsl8wbrn8" path="res://assets/skeleton/ENEMY MONSTER SKELETON/Animation PNG/SKELETON/08-Attack2/Three-frame leftward skeleton sword thrust.png" id="2_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://dhtnuy7tboiug" path="res://assets/skeleton/ENEMY MONSTER SKELETON/Animation PNG/SKELETON/01-Idle/skeleton_idle_sword_spritesheet.png" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://oixeewrfvcni" path="res://assets/skeleton/ENEMY MONSTER SKELETON/Animation PNG/SKELETON/03- Run/skeleton_run_sword_spritesheet.png" id="4_dqkch"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31cv2"]
+atlas = ExtResource("2_qlg0r")
+region = Rect2(0, 0, 860, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf23h"]
+atlas = ExtResource("2_qlg0r")
+region = Rect2(860, 0, 860, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dt7fs"]
+atlas = ExtResource("2_qlg0r")
+region = Rect2(1720, 0, 860, 720)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("1_4flbx")
@@ -157,6 +170,20 @@ region = Rect2(3040, 720, 760, 720)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_31cv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pf23h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dt7fs")
+}],
+"loop": 0,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qhqgy")
 }, {
 "duration": 1.0,
@@ -259,7 +286,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"roll",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -294,12 +321,15 @@ animations = [{
 }],
 "loop": 1,
 "name": &"run",
-"speed": 10.0
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ge176"]
-radius = 5.0
-height = 20.0
+radius = 7.0
+height = 22.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mgyta"]
+radius = 11.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1330139858 node_paths=PackedStringArray("camera") groups=["player"]]
 z_index = 5
@@ -310,15 +340,14 @@ camera = NodePath("Camera2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=136911823]
 texture_filter = 3
-position = Vector2(-7.0000167, 8.999995)
+position = Vector2(-4, 9)
 scale = Vector2(0.06578947, 0.06944445)
 sprite_frames = SubResource("SpriteFrames_ge176")
-animation = &"run"
+animation = &"attack"
 autoplay = "idle"
-frame_progress = 0.3569128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1310518154]
-position = Vector2(-1, 3)
+position = Vector2(-5, 3)
 shape = SubResource("CapsuleShape2D_ge176")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=835353659]
@@ -329,3 +358,12 @@ limit_top = -9999987
 limit_right = 10000115
 limit_bottom = 713
 position_smoothing_enabled = true
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=34303940]
+position = Vector2(24, 0)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=816209564]
+position = Vector2(3, 3)
+shape = SubResource("CircleShape2D_mgyta")
