@@ -3,8 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://bno7mh8udd21i" path="res://assets/world/energy_cell.png" id="1_c4vmg"]
 [ext_resource type="Script" uid="uid://b61mtca0oa2tf" path="res://scripts/hud.gd" id="1_y5tme"]
 [ext_resource type="LabelSettings" uid="uid://bgtvtc58ukhw1" path="res://assets/UI settings/new_label_settings.tres" id="2_rd3kb"]
+[ext_resource type="Texture2D" uid="uid://c1rpf1v4yiwq6" path="res://assets/misc/coin.png" id="4_18exe"]
 
-[node name="HUD" type="Control" unique_id=27543864 node_paths=PackedStringArray("energy_cell_label", "portal_label") groups=["hud"]]
+[node name="HUD" type="Control" unique_id=27543864 node_paths=PackedStringArray("energy_cell_label", "portal_label", "coin_label") groups=["hud"]]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -15,6 +16,7 @@ grow_vertical = 2
 script = ExtResource("1_y5tme")
 energy_cell_label = NodePath("EnergyCellTexture/EnergyCellLabel")
 portal_label = NodePath("PortalLabel")
+coin_label = NodePath("CoinTexture/CoinLabel")
 
 [node name="EnergyCellTexture" type="TextureRect" parent="." unique_id=2115330328]
 texture_filter = 1
@@ -46,3 +48,20 @@ offset_right = 56.0
 offset_bottom = 39.0
 text = "Portal Closed..."
 label_settings = ExtResource("2_rd3kb")
+
+[node name="CoinTexture" type="TextureRect" parent="." unique_id=875478850]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 88.0
+offset_right = 48.0
+offset_bottom = 136.0
+texture = ExtResource("4_18exe")
+expand_mode = 1
+
+[node name="CoinLabel" type="Label" parent="CoinTexture" unique_id=519861190]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 16.0
+offset_right = 80.0
+offset_bottom = 39.0
+text = "x 00"

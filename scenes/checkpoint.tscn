@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://so6wu0jav4ij"]
 
 [ext_resource type="Texture2D" uid="uid://bqx17xis17r8r" path="res://assets/assets2/Palm Tree Island/Sprites/Objects/Flag/flag_spritesheet.png" id="1_yyywg"]
-[ext_resource type="Script" uid="uid://t0hs642vgnyr" path="res://scripts/checkpoint.gd" id="2_ywqth"]
+[ext_resource type="Script" uid="uid://1udswtp0iqna" path="res://scripts/checkpoint.gd" id="2_ywqth"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ywqth"]
 atlas = ExtResource("1_yyywg")
@@ -78,16 +78,19 @@ animations = [{
 size = Vector2(23, 78)
 
 [node name="Checkpoint" type="Area2D" unique_id=737843235]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_ywqth")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1905175487]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ge176")
-frame_progress = 0.22519185
-script = ExtResource("2_ywqth")
+frame_progress = 0.7524746
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1219680623]
 position = Vector2(-4.5, -3)
 shape = SubResource("RectangleShape2D_mgyta")
 
 [connection signal="area_entered" from="." to="AnimatedSprite2D" method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="." to="AnimatedSprite2D" method="_on_checkpoint_body_entered"]

@@ -21,7 +21,7 @@ scale = Vector2(3, 3)
 [node name="Killzone" parent="." index="3" unique_id=1649378806 instance=ExtResource("3_osc7o")]
 position = Vector2(923, 448)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" index="1" unique_id=184885864]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" index="0" unique_id=184885864]
 position = Vector2(65, 714)
 shape = SubResource("WorldBoundaryShape2D_ge176")
 
@@ -42,3 +42,9 @@ scale = Vector2(0.5, 0.5)
 
 [node name="Checkpoint" parent="." index="8" unique_id=737843235]
 position = Vector2(276, 322)
+
+[node name="Coin" parent="Coins" parent_id_path=PackedInt32Array(2105224632) index="0" unique_id=1429043481]
+position = Vector2(393, 358)
+
+[node name="Coin2" parent="Coins" parent_id_path=PackedInt32Array(2105224632) index="1" unique_id=311099235]
+position = Vector2(358, 357)

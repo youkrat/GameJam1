@@ -1,7 +1,7 @@
 extends Node
 
 var score = 0 
-@onready var score_label = $ScoreLabel
+@onready var score_label = get_node_or_null("ScoreLabel")
 
 var starting_level = 0
 
@@ -13,19 +13,23 @@ var area_container : Node2D
 var player : PlayerController
 var hud : HUD
 var current_checkpoint : Checkpoint
-
+var default_spawn_position: Vector2
 
 		
 func _ready() -> void:
 	hud = get_tree().get_first_node_in_group("hud")
 	area_container = get_tree().get_first_node_in_group("area_container")
 	player = get_tree().get_first_node_in_group("player")
-	load_level(starting_level)	
+	
+	#Let's the player finish initializing before the first teleport
+	load_level.call_deferred(starting_level)	
 	
 func add_point():
 	score += 1
 	print(score)
-	score_label.text = "You collected " + str(score) + " coins."
+	
+	if score != null:
+		hud.update_coin_label(score)
 
 func next_level():
 	#increment the level count
@@ -46,6 +50,9 @@ func load_level(_level_number):
 	if !scene:
 		return 
 	
+	#Reset the previous level's checkpoint
+	current_checkpoint = null
+	
 	#remove the previous scene
 	for child in area_container.get_children():
 		child.queue_free()
@@ -58,8 +65,10 @@ func load_level(_level_number):
 	
 	#Moving the player to the start position of the new scene
 	var player_start_position = get_tree().get_first_node_in_group("player_start_position") as Node2D
+	#set the default start position
+	default_spawn_position = player_start_position.global_position
 	print("Spawn position", player_start_position.global_position)
-	player.teleport_to_location(player_start_position.position)
+	player.teleport_to_location(default_spawn_position)
 
 
 #Redundant
@@ -79,7 +88,20 @@ func reset_energy_cells():
 	energy_cells = 0
 	hud.update_energy_cell_label(energy_cells)
 	hud.portal_closed()
-	
+
+#PlayerStartPosition remains as fallback
 func respawn_player():
-	if current_checkpoint != null:
-		load_level(current_level)
+	var spawn_position = default_spawn_position
+	
+	if is_instance_valid(current_checkpoint):
+		spawn_position = current_checkpoint.global_position
+	
+	#Teleport to spawn position, whether checkpoint or PlayerStartPosition
+	player.teleport_to_location(spawn_position)
+	
+	#Allows physics overlap to update before another death
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	
+	player.is_dead = false
+	print("Respawn finished. is_dead", player.is_dead)

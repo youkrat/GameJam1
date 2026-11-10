@@ -5,6 +5,7 @@ class_name HUD
 
 @export var energy_cell_label : Label
 @export var portal_label : Label
+@export var coin_label : Label
 
 func update_energy_cell_label(number: int):
 	energy_cell_label.text = "x " + str(number)
@@ -14,3 +15,6 @@ func portal_opened():
 	
 func portal_closed():
 	portal_label.text = "Portal closed... Get energy cells!"
+
+func update_coin_label(score):
+	coin_label.text = "x " + str(score)

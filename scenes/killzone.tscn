@@ -3,12 +3,8 @@
 [ext_resource type="Script" uid="uid://2uh3pm10ve7p" path="res://scripts/killzone.gd" id="1_xlapc"]
 
 [node name="Killzone" type="Area2D" unique_id=1649378806]
-collision_mask = 3
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_xlapc")
 
-[node name="Timer" type="Timer" parent="." unique_id=468231403]
-wait_time = 0.281
-one_shot = true
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

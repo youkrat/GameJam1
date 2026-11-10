@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dqyr8n7irl0k2" path="res://scenes/level_functionality/area_exit.tscn" id="3_g3d36"]
 [ext_resource type="PackedScene" uid="uid://so6wu0jav4ij" path="res://scenes/checkpoint.tscn" id="4_vlowb"]
 [ext_resource type="PackedScene" uid="uid://duyhaqlol0r3x" path="res://scenes/slime.tscn" id="5_a35nm"]
+[ext_resource type="PackedScene" uid="uid://dow2gto807s42" path="res://scenes/coin.tscn" id="6_2f7ow"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tvdoy"]
 texture = ExtResource("2_g3d36")
@@ -299,7 +300,18 @@ position = Vector2(535, 404)
 position = Vector2(327, 435)
 
 [node name="Slime" parent="." unique_id=1737921600 instance=ExtResource("5_a35nm")]
-position = Vector2(405, 418)
+position = Vector2(409, 423)
 
 [node name="Checkpoint" parent="." unique_id=737843235 instance=ExtResource("4_vlowb")]
 position = Vector2(250, 403)
+
+[node name="Coins" type="Node" parent="." unique_id=2105224632]
+
+[node name="Coin" parent="Coins" unique_id=1429043481 instance=ExtResource("6_2f7ow")]
+position = Vector2(423, 324)
+
+[node name="Coin2" parent="Coins" unique_id=311099235 instance=ExtResource("6_2f7ow")]
+position = Vector2(358, 343)
+
+[node name="Coin3" parent="Coins" unique_id=1181152123 instance=ExtResource("6_2f7ow")]
+position = Vector2(310, 359)

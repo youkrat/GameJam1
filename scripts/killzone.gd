@@ -1,7 +1,6 @@
 extends Area2D
 
 
-@onready var timer = $Timer
 
 var player_died = false
 
@@ -17,19 +16,11 @@ func _ready() -> void:
 	set_deferred("monitoring", true)
 
 func _on_body_entered(body: Node2D) -> void:
-	if body != GameManager.player or player_died:
-		return
-
-	player_died = true
-	print("You died!")
-
-	Engine.time_scale = 0.5
-	timer.start()
+	if body is PlayerController:
+		body.die()
 
 
-func _on_timer_timeout() -> void:
-	Engine.time_scale = 1.0
-	GameManager.load_level(GameManager.current_level)
+
 	
 """#Removes the player from current scene
 func _on_body_entered(body: Node2D) -> void:
