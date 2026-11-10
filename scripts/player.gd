@@ -4,12 +4,13 @@ class_name PlayerController
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @export var camera: Camera2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -850.0
+const SPEED = 200
+const JUMP_VELOCITY = -450.0
 
 var is_rolling = false
 
 func _ready() -> void:
+	GameManager.player = self
 	animated_sprite_2d.sprite_frames.set_animation_loop("roll", false)
 	
 func _physics_process(delta: float) -> void:
@@ -62,3 +63,6 @@ func teleport_to_location(new_location):
 	#wait for a physics frame to give the camera time to move
 	await get_tree().physics_frame
 	camera.position_smoothing_enabled = true
+
+func die():
+	GameManager.respawn_player()

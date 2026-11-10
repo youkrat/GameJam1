@@ -22,6 +22,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 22, 22)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1872020860]
+z_index = 2
 texture_filter = 1
 position = Vector2(2, 12)
 shape = SubResource("CircleShape2D_25r1w")

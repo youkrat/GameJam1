@@ -12,7 +12,10 @@ var energy_cells = 0
 var area_container : Node2D
 var player : PlayerController
 var hud : HUD
+var current_checkpoint : Checkpoint
 
+
+		
 func _ready() -> void:
 	hud = get_tree().get_first_node_in_group("hud")
 	area_container = get_tree().get_first_node_in_group("area_container")
@@ -77,3 +80,6 @@ func reset_energy_cells():
 	hud.update_energy_cell_label(energy_cells)
 	hud.portal_closed()
 	
+func respawn_player():
+	if current_checkpoint != null:
+		load_level(current_level)

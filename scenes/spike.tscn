@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bgqh38y8pwnwt"]
+
+[ext_resource type="PackedScene" uid="uid://dhn50w2neg0rg" path="res://scenes/killzone.tscn" id="1_7a7y0"]
+[ext_resource type="Texture2D" uid="uid://dvv2qp2ugqp23" path="res://assets/assets2/Palm Tree Island/Sprites/Objects/Spikes/Spikes.png" id="2_d2mqm"]
+
+[node name="Spike" type="Node2D" unique_id=940011249]
+
+[node name="Killzone" parent="." unique_id=1649378806 instance=ExtResource("1_7a7y0")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Killzone" unique_id=691464452]
+polygon = PackedVector2Array(-16, 15, -13, 5, -9, 11, -6, 1, -2, 7, 3, 4, 8, 8, 11, 1, 15, 7, 14, 16)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2072929357]
+texture_filter = 1
+texture = ExtResource("2_d2mqm")
