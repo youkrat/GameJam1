@@ -104,11 +104,27 @@ func _set_facing(direction: float) -> void:
 
 func _check_attack_hits() -> void:
 	for area in attack_area.get_overlapping_areas():
-		var target = area.get_parent()
-		if hit_targets.has(target):
+		# Supports an Area2D item root or an enemy's child hurtbox.
+		var target: Node = area
+
+		if not target.is_in_group("attackable"):
+			target = area.get_parent()
+
+		if not is_instance_valid(target):
 			continue
+
+		if not target.is_in_group("attackable"):
+			continue
+
+		if target.is_queued_for_deletion() or hit_targets.has(target):
+			continue
+
 		hit_targets.append(target)
-		print("Hit: ", target.name)
+
+		if target.has_method("take_damage"):
+			target.call("take_damage", 1)
+		else:
+			target.queue_free()
 
 func _update_movement_animation() -> void:
 	if not is_on_floor():

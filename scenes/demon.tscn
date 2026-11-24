@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://18370y47aw4q"]
 
 [ext_resource type="Texture2D" uid="uid://dq8ostxivaid" path="res://assets/Demon_A/Demon_A_Attack01.png" id="1_877uw"]
+[ext_resource type="Script" uid="uid://kcpp6mqighxc" path="res://scripts/demon.gd" id="1_j12ep"]
 [ext_resource type="Texture2D" uid="uid://br7hdfqb4skbg" path="res://assets/Demon_A/Demon_A_Attack02.png" id="2_frgam"]
 [ext_resource type="Texture2D" uid="uid://ds6knn7db2gjt" path="res://assets/Demon_A/Demon_A_Death.png" id="3_hntnx"]
 [ext_resource type="Texture2D" uid="uid://drgpbw8k31iw7" path="res://assets/Demon_A/Demon_A_Hurt.png" id="4_srl18"]
 [ext_resource type="Texture2D" uid="uid://e4bjoulxg2dx" path="res://assets/Demon_A/Demon_A_Idle.png" id="5_yqxvt"]
 [ext_resource type="Texture2D" uid="uid://4wppo5l8ciw7" path="res://assets/Demon_A/Demon_A_Walk.png" id="6_ixf1x"]
-[ext_resource type="PackedScene" uid="uid://dhn50w2neg0rg" path="res://scenes/killzone.tscn" id="7_t4qc6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ld8m"]
 atlas = ExtResource("1_877uw")
@@ -219,7 +219,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mf1sa")
 }],
-"loop": 1,
+"loop": 2,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -236,7 +236,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dfptx")
 }],
-"loop": 1,
+"loop": 2,
 "name": &"hurt",
 "speed": 5.0
 }, {
@@ -293,21 +293,47 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ge176"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u20x4"]
 radius = 6.0
-height = 20.0
+height = 12.333333
 
-[node name="Demon" type="Node2D" unique_id=1042942948]
-scale = Vector2(3, 3)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_15y58"]
+radius = 6.0
+height = 14.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqfja"]
+size = Vector2(30, 16)
+
+[node name="Demon" type="CharacterBody2D" unique_id=840066066 groups=["attackable"]]
+scale = Vector2(2, 2)
+collision_layer = 8
+script = ExtResource("1_j12ep")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=593543680]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ge176")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
-frame_progress = 0.4502999
+frame_progress = 0.4558738
 
-[node name="Killzone" parent="." unique_id=1649378806 instance=ExtResource("7_t4qc6")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=676308464]
+position = Vector2(3, 0.33333334)
+shape = SubResource("CapsuleShape2D_u20x4")
 
-[node name="hitbox" type="CollisionShape2D" parent="Killzone" unique_id=2021579788]
-shape = SubResource("CapsuleShape2D_ge176")
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1438487077]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=936689146]
+shape = SubResource("CapsuleShape2D_15y58")
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=958207153]
+position = Vector2(15, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=350004957]
+shape = SubResource("RectangleShape2D_vqfja")
+
+[node name="GroundCheck" type="RayCast2D" parent="." unique_id=90711697]
+position = Vector2(10, 0)
+target_position = Vector2(0, 16)

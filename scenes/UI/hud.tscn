@@ -3,7 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://bno7mh8udd21i" path="res://assets/world/energy_cell.png" id="1_c4vmg"]
 [ext_resource type="Script" uid="uid://b61mtca0oa2tf" path="res://scripts/hud.gd" id="1_y5tme"]
 [ext_resource type="LabelSettings" uid="uid://bgtvtc58ukhw1" path="res://assets/UI settings/new_label_settings.tres" id="2_rd3kb"]
+[ext_resource type="FontFile" uid="uid://b4xl2pnlddplo" path="res://assets/misc/font/BoldPixels.ttf" id="3_0jeyp"]
 [ext_resource type="Texture2D" uid="uid://c1rpf1v4yiwq6" path="res://assets/misc/coin.png" id="4_18exe"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a3c6p"]
+font = ExtResource("3_0jeyp")
+
+[sub_resource type="LabelSettings" id="LabelSettings_uw44d"]
+font = ExtResource("3_0jeyp")
 
 [node name="HUD" type="Control" unique_id=27543864 node_paths=PackedStringArray("energy_cell_label", "portal_label", "coin_label") groups=["hud"]]
 texture_filter = 1
@@ -39,6 +46,7 @@ offset_right = 72.0
 offset_bottom = 11.0
 grow_vertical = 2
 text = "x 00"
+label_settings = SubResource("LabelSettings_a3c6p")
 
 [node name="PortalLabel" type="Label" parent="." unique_id=595325836]
 layout_mode = 0
@@ -65,3 +73,4 @@ offset_top = 16.0
 offset_right = 80.0
 offset_bottom = 39.0
 text = "x 00"
+label_settings = SubResource("LabelSettings_uw44d")

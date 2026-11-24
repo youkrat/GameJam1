@@ -38,6 +38,7 @@ area_exits=""
 player=""
 player_start_position=""
 hud=""
+attackable="Attackable objects"
 
 [input]
 

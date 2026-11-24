@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://5dkfsl8wbrn8" path="res://assets/skeleton/ENEMY MONSTER SKELETON/Animation PNG/SKELETON/08-Attack2/Three-frame leftward skeleton sword thrust.png" id="2_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://dhtnuy7tboiug" path="res://assets/skeleton/ENEMY MONSTER SKELETON/Animation PNG/SKELETON/01-Idle/skeleton_idle_sword_spritesheet.png" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://oixeewrfvcni" path="res://assets/skeleton/ENEMY MONSTER SKELETON/Animation PNG/SKELETON/03- Run/skeleton_run_sword_spritesheet.png" id="4_dqkch"]
+[ext_resource type="Texture2D" uid="uid://br88ra1djiuwn" path="res://assets/skeleton/ENEMY MONSTER SKELETON/Animation PNG/SKELETON/09-Jump.png" id="5_tuyoq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_31cv2"]
 atlas = ExtResource("2_qlg0r")
@@ -90,9 +91,21 @@ region = Rect2(1520, 1440, 760, 720)
 atlas = ExtResource("3_qhqgy")
 region = Rect2(2280, 1440, 760, 720)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
-atlas = ExtResource("1_4flbx")
-region = Rect2(64, 160, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqfne"]
+atlas = ExtResource("5_tuyoq")
+region = Rect2(0, 0, 543, 724)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnwbv"]
+atlas = ExtResource("5_tuyoq")
+region = Rect2(543, 0, 543, 724)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gl8cc"]
+atlas = ExtResource("5_tuyoq")
+region = Rect2(1086, 0, 543, 724)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_487ah"]
+atlas = ExtResource("5_tuyoq")
+region = Rect2(1629, 0, 543, 724)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bwjto"]
 atlas = ExtResource("1_4flbx")
@@ -253,7 +266,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g2els")
+"texture": SubResource("AtlasTexture_wqfne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnwbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gl8cc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_487ah")
 }],
 "loop": 1,
 "name": &"jump",
@@ -321,7 +343,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"run",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ge176"]
@@ -329,21 +351,22 @@ radius = 7.0
 height = 22.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgyta"]
-radius = 11.0
+radius = 13.152946
 
 [node name="Player" type="CharacterBody2D" unique_id=1330139858 node_paths=PackedStringArray("camera") groups=["player"]]
 z_index = 5
 position = Vector2(365, 402)
 collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_g2els")
 camera = NodePath("Camera2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=136911823]
 texture_filter = 3
 position = Vector2(-4, 9)
-scale = Vector2(0.06578947, 0.06944445)
+scale = Vector2(0.08, 0.083)
 sprite_frames = SubResource("SpriteFrames_ge176")
-animation = &"attack"
+animation = &"jump"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1310518154]
@@ -351,12 +374,12 @@ position = Vector2(-5, 3)
 shape = SubResource("CapsuleShape2D_ge176")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=835353659]
-position = Vector2(229, -24)
+position = Vector2(182, 8)
 zoom = Vector2(2, 2)
-limit_left = -9999885
-limit_top = -9999987
-limit_right = 10000115
-limit_bottom = 713
+limit_left = -10000005
+limit_top = -9999865
+limit_right = 9999995
+limit_bottom = 835
 position_smoothing_enabled = true
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=34303940]
@@ -365,5 +388,5 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=816209564]
-position = Vector2(3, 3)
+position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_mgyta")
